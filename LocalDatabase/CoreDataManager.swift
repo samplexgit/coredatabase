@@ -91,37 +91,39 @@ class CoreDataManager {
     }
     
     //TO DO
-   /* func updateData(tablename: String, record: NSDictionary, index: Int)->NSManagedObject {
+    func updateData(tablename: String,record: NSDictionary, index: Int) {
        
-        
+    
         let managedContext = appDelegate.getContext()
+    
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: tablename)
-        var newManagedObject = NSEntityDescription.insertNewObject(forEntityName: tablename, into: managedContext)
+        //fetchRequest.predicate = NSPredicate(format: "name = %@","shilpa")// predicate can be used instead of index
         do {
          let fetchedResults = try managedContext.fetch(fetchRequest)
          let results = fetchedResults as! [NSManagedObject]
+            print(results)
+            print(record)
             
-            deleteData(tablename: tablename, index: index)
-            fetchRequest.predicate = NSPredicate(format: "name = %@","update")
-            
-            if results.count != 0 // Check notificationId available then not save
+            if results.count != 0 // Check
             {
+                let newManagedObject = results[index]
+                
                 if(tablename == "Person"){
-                 newManagedObject = results[0]
                  newManagedObject.setValue(record["name"] as! NSString, forKey: "name")
                  newManagedObject.setValue(record["time"] as! NSString, forKey: "time")
                  newManagedObject.setValue(record["status"] as! NSString, forKey: "status")
                  
-                }
+            }
                try managedContext.save()
             }
         } catch let error {
             print(error.localizedDescription)
             
+           
         }
-       return newManagedObject
     
-    }*/
+    
+    }
     
     
 }

@@ -154,6 +154,7 @@ indexPath: IndexPath) -> UITableViewCell {
         print(buttonIndex)
         let person = people[buttonIndex]
         self.updateData(index: buttonIndex, name: (person.value(forKey: "name") as? String)!)
+        
     }
    
     // did in the same file, now there is common method so commented here
@@ -281,12 +282,12 @@ indexPath: IndexPath) -> UITableViewCell {
                                         dictionary.updateValue(textField!.text!, forKey: "name")
                                         dictionary.updateValue(dateString, forKey: "time")
                                         dictionary.updateValue(self.status, forKey: "status")
-                                        self.coredatahelper.deleteData(tablename: "Person", index: index)
-                                        self.people.remove(at: index)
-                                        //let InsertedValue = self.coredatahelper.updateData(tablename: "Person", record: dictionary as NSDictionary, index: index)
-                                        let InsertedValue = self.coredatahelper.saveData(tablename: "Person", record: dictionary as NSDictionary)
+                                        //self.coredatahelper.deleteData(tablename: "Person", index: index)
+                                        //self.people.remove(at: index)
+                                        let InsertedValue = self.coredatahelper.updateData(tablename: "Person", record: dictionary as NSDictionary, index: index)
+                                        //let InsertedValue = self.coredatahelper.saveData(tablename: "Person", record: dictionary as NSDictionary)
                                         print(InsertedValue)
-                                        self.people.append(InsertedValue)
+                                        //self.people.append(InsertedValue as NSManagedObject)
                                         self.tableView.reloadData()
         })
         
